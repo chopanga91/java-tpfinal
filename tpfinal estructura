@@ -1,0 +1,73 @@
+RRHH
+atributos
+	- <>Tecnicos
+
+
+metodos
+	- emitir reporte (<Incidentes>)
+		por c tecnico
+			incidentesResueltos
+			incidentesAbiertos
+			
+	- baja de tecnico
+	- modificar tecnico
+
+
+TECNICO
+atributos
+	- nombre
+	- dni
+	-
+	- <especialidades>
+	- <TipoDeIncidentes(enum?)>
+
+metodos
+
+
+
+ESPECIALIDAD
+atrib
+	-<TipodeIncidentes> 
+
+
+metodos
+
+AREACOMERCIAL
+atrib
+	-<>clientes
+
+
+metodos
+	-agregar cliente
+	-eliminar cliente
+	-modificar cliente
+
+
+CLIENTES
+atrib
+
+
+
+metodos
+
+
+INCIDENTE
+	-Resuelto BOOLEAN
+	-Nombre
+	-Cliente
+	-Tecnico 
+
+UI
+- Scanner
+	 Ingresar dni
+	 matchear con AreaComercial-Clientes
+	 Seleccionar que servicio y que incidente desea reportar
+	 se devuelve  un listado de tecnicos
+	 Elegir que tecnico
+	 devolver tiempo estimado de resolucion
+	 notificar y agregar incidente a resolver al tecnico
+
+
+
+
+

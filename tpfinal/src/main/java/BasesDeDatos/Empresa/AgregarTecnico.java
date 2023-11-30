@@ -3,6 +3,7 @@ package BasesDeDatos.Empresa;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class AgregarTecnico {
@@ -28,12 +29,12 @@ public class AgregarTecnico {
         String dniEmpleado = scanner.nextLine();
         tecnico.setDni(dniEmpleado);
         // Crear la instancia de Especialidades
-
-        Especialidad especialidad = new Especialidad();
-        especialidad.setDireccion(direccionEmpleado);
+        System.out.println("Ingrese cual es la especialidad del tecnico:");
+        String especialidad = scanner.nextLine();
+        Especialidad esp = new Especialidad();
 
         // Asignar la dirección al empleado
-        empleado.setDireccion(especialidad);
+        tecnico.addEspecialidad(esp);
 
         // Iniciar una transacción
         entityManager.getTransaction().begin();
@@ -43,7 +44,7 @@ public class AgregarTecnico {
             entityManager.persist(especialidad);
 
             // Persistir el empleado
-            entityManager.persist(empleado);
+            entityManager.persist(tecnico);
 
             // Commit de la transacción
             entityManager.getTransaction().commit();

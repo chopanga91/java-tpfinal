@@ -2,6 +2,7 @@ package BasesDeDatos.Empresa;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Objects;
 
 @Entity
 @Table(name = "tecnico")
@@ -35,6 +36,14 @@ class Tecnico {
     public void setDni(String dni) {
         this.dni = dni;
     }
+    public void addEspecialidad(Especialidad especialidad){
+        if(this.especialidades.contains(especialidad)){
+            return;
+        } else {
+            this.especialidades.add(especialidad);
+        }
+
+    }
 
     public String getDni() {
         return dni;
@@ -46,5 +55,18 @@ class Tecnico {
 
     public String getNombre() {
         return nombre;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tecnico tecnico = (Tecnico) o;
+        return nombre.equals(tecnico.nombre) && dni.equals(tecnico.dni);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre, dni);
     }
 }

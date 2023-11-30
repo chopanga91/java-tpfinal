@@ -16,7 +16,7 @@ class Main {
         entityManager.getTransaction().begin();
 
         // Persistir el objeto en la base de datos
-        entityManager.persist();
+        //entityManager.persist();
 
         // Commit de la transacción
         entityManager.getTransaction().commit();

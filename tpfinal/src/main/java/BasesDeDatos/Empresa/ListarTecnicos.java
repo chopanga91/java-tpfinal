@@ -6,7 +6,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class ListarDirecciones {
+public class ListarTecnicos {
     public static void main(String[] args) {
         // Crear el EntityManagerFactory
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EmpleadoPersistencia");
@@ -19,17 +19,20 @@ public class ListarDirecciones {
 
         try {
             // Consulta JPA para obtener la lista de empleados con sus direcciones
-            String jpql = "SELECT e FROM Empleado e JOIN FETCH e.direccion";
-            TypedQuery<Empleado> query = entityManager.createQuery(jpql, Empleado.class);
-            List<Empleado> empleados = query.getResultList();
+            String jpql = "SELECT e FROM Tecnico e JOIN FETCH e.especialidades";
+            TypedQuery<Tecnico> query = entityManager.createQuery(jpql, Tecnico.class);
+            List<Tecnico> tecnicos = query.getResultList();
 
             // Mostrar la información
-            for (Empleado empleado : empleados) {
-                System.out.println("Empleado: " + empleado.getNombre());
-                if (empleado.getDireccion() != null) {
-                    System.out.println("Dirección: " + empleado.getDireccion().getDireccion());
+            for (Tecnico tecnico : tecnicos) {
+                System.out.println("Tecnico: " + tecnico.getNombre());
+                if (!tecnico.especialidades.isEmpty()) {
+                    for (Especialidad especialidad: tecnico.especialidades) {
+                        System.out.println("Especialidad: " + especialidad);
+
+                    }
                 } else {
-                    System.out.println("Sin dirección registrada.");
+                    System.out.println("Sin especialidades registrada.");
                 }
                 System.out.println("--------------------");
             }

@@ -15,9 +15,8 @@ class Especialidad {
     @Column(name = "nombre")
     private String nombre;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "tecnico_especialidad")
-    private ArrayList<Tecnico> tecnicos = new ArrayList<>();
+    @OneToMany(mappedBy = "especialidad")
+    private List<Tecnico> tecnicos = new ArrayList<Tecnico>();
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Incidente> incidentesQueResuelve = new ArrayList<Incidente>();
@@ -30,6 +29,10 @@ class Especialidad {
         this.nombre = nombre;
     }
 
+    public Especialidad(String nombre, Tecnico tecnico) {
+        this.nombre = nombre;
+        this.tecnicos.add(tecnico);
+    }
 
     // Getters y setters
 
@@ -41,7 +44,13 @@ class Especialidad {
         this.nombre = nombre;
     }
     public void addIncidentesQueResuelve(Incidente incidente){
+
         this.incidentesQueResuelve.add(incidente);
+    }
+
+    public void addTecnico(Tecnico tecnico){
+
+        this.tecnicos.add(tecnico);
     }
 
     @Override

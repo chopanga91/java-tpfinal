@@ -15,6 +15,7 @@ class Main {
         // Iniciar una transacción
         entityManager.getTransaction().begin();
 
+
         // Persistir el objeto en la base de datos
         //entityManager.persist();
 

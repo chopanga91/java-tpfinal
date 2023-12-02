@@ -2,6 +2,7 @@ package BasesDeDatos.Empresa;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,9 +17,13 @@ class Tecnico {
     @Column(name = "dni")
     private String dni;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "tecnico_especialidad")
-    public ArrayList<Especialidad> especialidades = new ArrayList<>();
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "especialidad", referencedColumnName = "id")
+    public Especialidad especialidad;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tecnico")
+    public List<Cliente> clienteAsignados = new ArrayList<Cliente>();
 
     // Constructor, getters y setters
 
@@ -30,20 +35,27 @@ class Tecnico {
         this.dni = dni;
     }
 
-    // Getters y setters
+    public Especialidad getEspecialidad() {
+        return especialidad;
+    }
+
+    public void setEspecialidad(Especialidad especialidad) {
+        this.especialidad = especialidad;
+    }
+// Getters y setters
 
     // Métodos de utilidad para establecer y obtener la relación bidireccional
     public void setDni(String dni) {
         this.dni = dni;
     }
-    public void addEspecialidad(Especialidad especialidad){
-        if(this.especialidades.contains(especialidad)){
-            return;
-        } else {
-            this.especialidades.add(especialidad);
-        }
-
-    }
+//    public void addEspecialidad(Especialidad especialidad){
+//        if(this.especialidades.contains(especialidad)){
+//            return;
+//        } else {
+//            this.especialidades.add(especialidad);
+//        }
+//
+//    }
 
     public String getDni() {
         return dni;

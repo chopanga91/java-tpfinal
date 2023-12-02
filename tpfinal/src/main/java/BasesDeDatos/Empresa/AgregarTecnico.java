@@ -31,17 +31,23 @@ public class AgregarTecnico {
         // Crear la instancia de Especialidades
         System.out.println("Ingrese cual es la especialidad del tecnico:");
         String especialidad = scanner.nextLine();
-        Especialidad esp = new Especialidad();
+
+        System.out.println("Que incidentes puede resolver en dicha especialidad?");
+        String inc = scanner.nextLine();
+        System.out.println("En cuanto tiempo estimado puede solucionar dicho problema?");
+        int tiempo = Integer.valueOf(scanner.nextLine());
+        tecnico.setEspecialidad(new Especialidad(especialidad, tecnico));
+        //esp.addIncidentesQueResuelve(new Incidente(inc, tiempo));
 
         // Asignar la dirección al empleado
-        tecnico.addEspecialidad(esp);
+
 
         // Iniciar una transacción
         entityManager.getTransaction().begin();
 
         try {
             // Persistir la dirección
-            entityManager.persist(especialidad);
+
 
             // Persistir el empleado
             entityManager.persist(tecnico);
@@ -49,7 +55,7 @@ public class AgregarTecnico {
             // Commit de la transacción
             entityManager.getTransaction().commit();
 
-            System.out.println("Empleado y dirección guardados exitosamente.");
+            System.out.println("Tecnico y especialidad guardados exitosamente.");
         } catch (Exception e) {
             // En caso de error, hacer rollback
             entityManager.getTransaction().rollback();

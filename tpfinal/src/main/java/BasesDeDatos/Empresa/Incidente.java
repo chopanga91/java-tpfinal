@@ -19,6 +19,21 @@ public class Incidente {
     public void Incidente(String nombre) {
         this.nombre = nombre;
     }
+//    @ManyToOne
+//    @JoinColumn(name = "dni")
+//    private Cliente cliente;
+
+    @ManyToOne
+    @JoinColumn(name = "especialidad_id", referencedColumnName = "id")
+    private Especialidad especialidad;
+
+
+    public Incidente(){};
+
+    public Incidente(String nombre, int tiempoRes) {
+        this.nombre = nombre;
+        this.tiempoResolucion = tiempoRes;
+    }
 
     public String getNombre() {
         return nombre;

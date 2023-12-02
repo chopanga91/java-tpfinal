@@ -19,18 +19,16 @@ public class ListarTecnicos {
 
         try {
             // Consulta JPA para obtener la lista de empleados con sus direcciones
-            String jpql = "SELECT e FROM Tecnico e JOIN FETCH e.especialidades";
+            String jpql = "SELECT e FROM Tecnico e JOIN FETCH e.especialidad";
             TypedQuery<Tecnico> query = entityManager.createQuery(jpql, Tecnico.class);
             List<Tecnico> tecnicos = query.getResultList();
 
             // Mostrar la información
             for (Tecnico tecnico : tecnicos) {
                 System.out.println("Tecnico: " + tecnico.getNombre());
-                if (!tecnico.especialidades.isEmpty()) {
-                    for (Especialidad especialidad: tecnico.especialidades) {
-                        System.out.println("Especialidad: " + especialidad);
+                if (tecnico.especialidad != null) {
+                        System.out.println("Especialidad: " + tecnico.especialidad.getNombre());
 
-                    }
                 } else {
                     System.out.println("Sin especialidades registrada.");
                 }

@@ -9,7 +9,7 @@ import java.util.Objects;
 @Table(name = "especialidad")
 class Especialidad {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "nombre")
@@ -18,7 +18,7 @@ class Especialidad {
     @OneToMany(mappedBy = "especialidad")
     private List<Tecnico> tecnicos = new ArrayList<Tecnico>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.MERGE, orphanRemoval = true)
     private List<Incidente> incidentesQueResuelve = new ArrayList<Incidente>();
     // Constructor, getters y setters
 
@@ -27,6 +27,9 @@ class Especialidad {
 
     public Especialidad(String nombre) {
         this.nombre = nombre;
+    }
+    public Especialidad(Long id) {
+        this.id = id;
     }
 
     public Especialidad(String nombre, Tecnico tecnico) {
@@ -44,9 +47,9 @@ class Especialidad {
         this.nombre = nombre;
     }
     public void addIncidentesQueResuelve(Incidente incidente){
-
         this.incidentesQueResuelve.add(incidente);
     }
+
 
     public void addTecnico(Tecnico tecnico){
 
@@ -82,4 +85,25 @@ class Especialidad {
 //    public String getDireccion() {
 //        return direccion;
 //    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public List<Tecnico> getTecnicos() {
+        return tecnicos;
+    }
+
+    public void setTecnicos(List<Tecnico> tecnicos) {
+        this.tecnicos = tecnicos;
+    }
+
+    public List<Incidente> getIncidentesQueResuelve() {
+        return incidentesQueResuelve;
+    }
+
+    public void setIncidentesQueResuelve(List<Incidente> incidentesQueResuelve) {
+        this.incidentesQueResuelve = incidentesQueResuelve;
+    }
 }

@@ -1,15 +1,16 @@
 package BasesDeDatos.Empresa;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tecnico")
-class Tecnico {
+class Tecnico implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "nombre")
@@ -18,21 +19,25 @@ class Tecnico {
     private String dni;
 
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "especialidad", referencedColumnName = "id")
     public Especialidad especialidad;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tecnico")
     public List<Cliente> clienteAsignados = new ArrayList<Cliente>();
 
+    @OneToMany(mappedBy = "tecnico", cascade = CascadeType.ALL)
+    private List<IncidenteCargado> incidenteCargadoList = new ArrayList<IncidenteCargado>();
+
     // Constructor, getters y setters
 
     // Constructor vacío necesario para JPA
     public Tecnico() {}
 
-    public Tecnico(String nombre, String dni) {
+    public Tecnico(String nombre, String dni, Long id) {
         this.nombre = nombre;
         this.dni = dni;
+        this.id = id;
     }
 
     public Especialidad getEspecialidad() {
@@ -80,5 +85,29 @@ class Tecnico {
     @Override
     public int hashCode() {
         return Objects.hash(nombre, dni);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Cliente> getClienteAsignados() {
+        return clienteAsignados;
+    }
+
+    public void setClienteAsignados(List<Cliente> clienteAsignados) {
+        this.clienteAsignados = clienteAsignados;
+    }
+
+    public List<IncidenteCargado> getIncidenteCargadoList() {
+        return incidenteCargadoList;
+    }
+
+    public void setIncidenteCargadoList(List<IncidenteCargado> incidenteCargadoList) {
+        this.incidenteCargadoList = incidenteCargadoList;
     }
 }

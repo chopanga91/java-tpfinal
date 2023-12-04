@@ -10,7 +10,7 @@
         <class>BasesDeDatos.Empresa.Incidente</class>
         <class>BasesDeDatos.Empresa.Tecnico</class>
         <class>BasesDeDatos.Empresa.Especialidad</class>
-        <class>BasesDeDatos.Empresa.TecnicoEspecialidad</class>
+        <class>BasesDeDatos.Empresa.IncidenteCargado</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mydb"/>
@@ -24,5 +24,6 @@
             <property name="hibernate.connection.username" value="root"/>
             <property name="hibernate.connection.password" value="1212"/>
         </properties>
-    </persistence-unit>
-</persistence>
+        </persistence-unit>
+    </persistence>
+

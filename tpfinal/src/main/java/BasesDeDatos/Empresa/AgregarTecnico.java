@@ -39,7 +39,7 @@ public class AgregarTecnico {
         tecnico.setEspecialidad(new Especialidad(especialidad, tecnico));
         //esp.addIncidentesQueResuelve(new Incidente(inc, tiempo));
 
-        // Asignar la dirección al empleado
+
 
 
         // Iniciar una transacción

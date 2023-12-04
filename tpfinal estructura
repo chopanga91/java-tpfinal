@@ -62,9 +62,9 @@ UI
 	 Ingresar dni
 	 matchear con AreaComercial-Clientes
 	 Seleccionar que servicio y que incidente desea reportar
-	 se devuelve  un listado de tecnicos
-	 Elegir que tecnico
-	 devolver tiempo estimado de resolucion
+	 se devuelve  un listado de técnicos
+	 Elegir que técnico
+	 devolver tiempo estimado de resolución
 	 notificar y agregar incidente a resolver al tecnico
 
 
